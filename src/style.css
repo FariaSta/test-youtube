@@ -44,7 +44,9 @@ h1 {
   line-height: 38px;
   letter-spacing: 0em;
   text-align: left;
-  
+}
+h4 {
+  color: #3C3E41;
 }
 
 button {
@@ -53,7 +55,7 @@ button {
   padding: 0.6em 1.2em;
   font-size: 15px;
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -61,10 +63,10 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 input {
   color: black;
