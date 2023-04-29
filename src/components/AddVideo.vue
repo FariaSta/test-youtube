@@ -9,6 +9,7 @@ const emit = defineEmits(['setVideoUser'])
 const urlUser = ref('')
 const errorValue = ref('')
 const correctValue = ref('')
+const idYoutube = ref('')
 
 async function send() {
     try {
@@ -24,6 +25,8 @@ async function send() {
         if (url.hostname == 'youtu.be' || url.hostname == 'www.youtube.com') {
             if (url.hostname == 'youtu.be') id = url.pathname.slice(1)
             else id = urlUser.value.match(/v=([a-zA-Z0-9_-]+)/)[1]
+
+            idYoutube.value = id
 
             const key = 'AIzaSyBLmZBGZIPRYrlShMFXgtirkq9ocCNYbdA'
             let res = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${id}&t=779s&key=${key}`)
@@ -57,10 +60,12 @@ async function sendData() {
     let exists = false
     querySnapshot.forEach((doc) => {
         let data = doc.data()
-        if (data.url == urlUser.value) exists = true
+        console.log('data', data)
+        if (data.idYoutube == idYoutube.value) exists = true
     })
     if (!exists) {
-        let docRef = await addDoc(collection(db, "videos"), { url: urlUser.value })
+        console.log(idYoutube.value)
+        let docRef = await addDoc(collection(db, "videos"), { url: urlUser.value, idYoutube: idYoutube.value })
         emit('setVideoUser', { id: docRef.id, url: urlUser.value })
         correctValue.value = 'Video publicado'
         clearMessage()
