@@ -25,7 +25,6 @@ function indexDeteleCard() {
 }
 
 // Validando si hostname es youtube o youtu.be
-console.log(props.item)
 let url = getLocation(props.item.doc.url)
 if (url.hostname == 'youtu.be')  videoId.value = url.pathname.slice(1)
 else videoId.value = props.item.doc.url.match(/v=([a-zA-Z0-9_-]+)/)[1]

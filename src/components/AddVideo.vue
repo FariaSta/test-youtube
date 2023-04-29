@@ -21,7 +21,6 @@ async function send() {
 
         let url = getLocation(urlUser.value)
         let id
-        console.log(url.hostname)
         if (url.hostname == 'youtu.be' || url.hostname == 'www.youtube.com') {
             if (url.hostname == 'youtu.be') id = url.pathname.slice(1)
             else id = urlUser.value.match(/v=([a-zA-Z0-9_-]+)/)[1]
@@ -60,11 +59,9 @@ async function sendData() {
     let exists = false
     querySnapshot.forEach((doc) => {
         let data = doc.data()
-        console.log('data', data)
         if (data.idYoutube == idYoutube.value) exists = true
     })
     if (!exists) {
-        console.log(idYoutube.value)
         let docRef = await addDoc(collection(db, "videos"), { url: urlUser.value, idYoutube: idYoutube.value })
         emit('setVideoUser', { id: docRef.id, url: urlUser.value })
         correctValue.value = 'Video publicado'
