@@ -6,7 +6,7 @@ Es un álbum online con la finalidad de guardar videos de YouTube y también pod
 
 ## Agregar Videos
 
-En la zona de arriba encontrarás una barra donde podrás agregar los videos que quieras en tu álbum online.
+En la zona de arriba encontrarás una barra donde podrás agregar la url de los videos que quieras en tu álbum online.
 
 ![](./docs/AddVideo.png)
 
