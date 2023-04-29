@@ -8,7 +8,7 @@ const props = defineProps({
 <template>
     <template>
         <div class="text-center">
-            <v-dialog v-model="props.dialog" width="50vw">
+            <v-dialog v-model="props.dialog" width="930px">
                 <v-card>
                     <div class="container">
                         <img class="close" src="../../assets/close.png" alt="X"  @click="$emit('closeVideoDetailModal')">
@@ -17,7 +17,7 @@ const props = defineProps({
                         </iframe>
                         <div class="info">
                             <h4>{{props.item.title}}</h4>
-                            <p>{{props.item.description.slice(0, 350)}}...</p>
+                            <p>{{props.item.description.slice(0, 220)}}...</p>
                         </div>
                     </div>
                 </v-card>
@@ -51,5 +51,17 @@ iframe {
     right: 15px;
     width: 22px;
     cursor: pointer;
+}
+@media only screen and (max-width: 640px) {
+    .container{
+        flex-direction: column;
+    }
+    .info {
+        width: 100%;
+        padding: 20px;
+    }
+    iframe {
+    width: 90%;
+}
 }
 </style>

@@ -1,8 +1,19 @@
 <script setup>
 import Button from "../Button.vue";
+import { db } from '../../main';
+import { doc, deleteDoc } from "firebase/firestore";
+const emit = defineEmits(['closeDeleteCardModal', 'deleteCard'])
+
 const props = defineProps({
-    dialog: Boolean
+    dialog: Boolean,
+    item: Object
 })
+
+async function deleteVideo() {
+    await deleteDoc(doc(db, "videos", props.item.id));
+    emit('deleteCard', props.item.id)
+    emit('closeDeleteCardModal')
+}
 </script>
 <template>
     <div class="text-center">
@@ -16,7 +27,7 @@ const props = defineProps({
                 <v-card-actions>
                     <div class="buttons">
                         <Button text="Cancelar" type="negative" @click="$emit('closeDeleteCardModal')" />
-                        <Button text="Eliminar" type="positive" />
+                        <Button text="Eliminar" type="positive" @click="deleteVideo()" />
                     </div>
                 </v-card-actions>
             </v-card>

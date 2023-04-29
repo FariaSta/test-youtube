@@ -8,10 +8,11 @@ import DeleteCard from "./DeleteCard.vue";
 const props = defineProps({
     item: Object
 })
-console.log('props.item', props.item)
+const emit = defineEmits(['emitDeleteCard'])
 
 const video = ref({})
 const videoId = ref('')
+const deleted = ref(false)
 
 var getLocation = function(href) {
     var l = document.createElement("a");
@@ -19,11 +20,18 @@ var getLocation = function(href) {
     return l;
 };
 
+function indexDeteleCard() {
+    deleted.value = true
+}
+
+// Validando si hostname es youtube o youtu.be
+console.log(props.item)
 let url = getLocation(props.item.doc.url)
 if (url.hostname == 'youtu.be')  videoId.value = url.pathname.slice(1)
 else videoId.value = props.item.doc.url.match(/v=([a-zA-Z0-9_-]+)/)[1]
 
 const key = 'AIzaSyBLmZBGZIPRYrlShMFXgtirkq9ocCNYbdA'
+
 
 const statusVideoDetailModal = ref(false)
 function closeVideoDetailModal() {
@@ -37,7 +45,6 @@ function closeDeleteCardModal() {
 
 axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId.value}&t=779s&key=${key}&part=snippet,contentDetails`)
 .then((res) => {
-    console.log('res', res.data)
 
     // Duracion del video
     const durationStr = res.data.items[0].contentDetails.duration;
@@ -52,15 +59,17 @@ axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId.value}&t=77
 })
 </script>
 <template>
-    <div>
-        <div class="card" >
-            <p class="card__p">{{ video.duration }}</p>
-            <img class="detele" src="../../assets/delete.png" alt="X" @click="statusDeleteCardModal = true">
-            <img class="miniature" :src="video.miniature" @click="statusVideoDetailModal = true">
+    <Transition>
+        <div v-if="!deleted">
+            <div class="card" >
+                <p class="card__p">{{ video.duration }}</p>
+                <img class="detele" src="../../assets/delete.png" alt="X" @click="statusDeleteCardModal = true">
+                <img class="miniature" :src="video.miniature" @click="statusVideoDetailModal = true">
+            </div>
+            <DeleteCard @closeDeleteCardModal="closeDeleteCardModal" @deleteCard="indexDeteleCard(id)" :dialog="statusDeleteCardModal" :item="props.item" />
+            <VideoDetail @closeVideoDetailModal="closeVideoDetailModal" :dialog="statusVideoDetailModal" :item="video" />
         </div>
-        <DeleteCard @closeDeleteCardModal="closeDeleteCardModal" :dialog="statusDeleteCardModal" :item="video" />
-        <VideoDetail @closeVideoDetailModal="closeVideoDetailModal" :dialog="statusVideoDetailModal" :item="video" />
-    </div>
+    </Transition>
 </template>
 <style scoped>
 .card {
@@ -92,5 +101,14 @@ axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId.value}&t=77
     bottom: 5px;
     background-color: #161616;
     padding: 3px;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 1.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
