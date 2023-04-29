@@ -1,32 +1,32 @@
 # Youtube AFEX
 
-Es un álbum online de videos con la finalidad de guardar videos en youtube y tambien poder verlos. Podras pegar links de video y reoriducirlos o eliminarlos cuando gustes.
+Es un álbum online de videos con la finalidad de guardar videos en YouTube y también poder verlos. Podrás pegar los links y reproducirlos o eliminarlos cuando gustes.
 
 ![](./docs/project.png)
 
 ## Agregar Videos
 
-En la zona de arriba podras encontrar una barra donde podras agregar los videos que quieras en tu albun online.
+En la zona de arriba encontrarás una barra donde podrás agregar los videos que quieras en tu álbum online.
 
 ![](./docs/AddVideo.png)
 
-## Ver Albun
+## Ver Álbum
 
-En esta zona visualizaras tus elementos guardados con su tiempo de duracion.
+En esta zona visualizarás tus elementos guardados con su tiempo de duracion.
 
 ![](./docs/album.png)
 
 ## Detalle del Video
 
-Aqui podras reproducir el video y obtener mas informacion con el titulo y descripcion.
+Aquí puedes reproducir el video y obtener más información con el título y descripción.
 
 ![](./docs/detalle.png)
 
 ## Eliminar Video
 
-Para eliminar el video solo debes darle click a la x del item y confirmar la eliminacion
+Para eliminar el video solo debes darle click a la x del item y confirmar la eliminación
 
-# Instalacion
+# Instalación
 Vue 3 + Vite
 
 El proyecto se ha creado con Vue 3 + Vite 
