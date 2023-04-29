@@ -1,6 +1,6 @@
 # Youtube AFEX
 
-Es un álbum online de videos con la finalidad de guardar videos en YouTube y también poder verlos. Podrás pegar los links y reproducirlos o eliminarlos cuando gustes.
+Es un álbum online con la finalidad de guardar videos de YouTube y también poder verlos. Podrás pegar los links y reproducirlos o eliminarlos cuando gustes.
 
 ![](./docs/project.png)
 
@@ -12,7 +12,7 @@ En la zona de arriba encontrarás una barra donde podrás agregar los videos que
 
 ## Ver Álbum
 
-En esta zona visualizarás tus elementos guardados con su tiempo de duracion.
+En esta zona visualizarás tus elementos guardados con su tiempo de duración.
 
 ![](./docs/album.png)
 
